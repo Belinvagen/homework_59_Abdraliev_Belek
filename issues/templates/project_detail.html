@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Project Details{% endblock %}
+
+{% block content %}
+<h1>{{ project.name }}</h1>
+<p>{{ project.description }}</p>
+<h2>Tasks</h2>
+{% if issues %}
+    <ul class="list-group">
+        {% for issue in issues %}
+            <li class="list-group-item">
+                <a href="{% url 'issue_edit' issue.pk %}">{{ issue.summary }}</a>
+                ({{ issue.status }})
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No tasks for this project.</p>
+{% endif %}
+{% endblock %}
